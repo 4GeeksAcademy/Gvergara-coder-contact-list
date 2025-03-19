@@ -1,0 +1,45 @@
+body{
+    background-color: rgb(231, 225, 180);
+}
+
+.save-button{
+    display: block;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: rgb(74, 167, 110);
+}
+
+.header{
+    margin-left: 420px;
+    padding-left: 50px;
+}
+
+.header-input{
+    display: block;
+    font-size: larger;
+    color: black;
+}
+
+.input{
+    display: block;
+    text-align: left;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.back-contacts{
+    color: blue;
+}
+
+.new-contact-btn{
+    margin-left: 400px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: rgb(74, 167, 110);
+}

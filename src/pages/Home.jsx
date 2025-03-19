@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
 	const apiUrl = "https://playground.4geeks.com/contact"
@@ -25,7 +26,7 @@ export const Home = () => {
 					}
 					console.log("No se pudo obtener la agenda")
 				}
-				return response.json
+				return response.json()
 			})
 	}
 
@@ -34,15 +35,17 @@ export const Home = () => {
 	}, [])
 	return (
 		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-			<link to="/add-contact">
-				<button className="btn btn-success">
-					Add Contact
+			<Link to="add-contact">
+				<button className="new-contact-btn">
+					Add New Contact
 				</button>
-			</link>
+			</Link>
+			<form>
+				<input
+				type="Text"
+				>
+				</input>
+			</form>		
 		</div>
 	);
 }; 
