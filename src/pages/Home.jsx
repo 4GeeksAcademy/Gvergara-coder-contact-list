@@ -6,33 +6,21 @@ import { Link } from "react-router-dom";
 export const Home = () => {
 	const apiUrl = "https://playground.4geeks.com/contact"
 	const userAgenda = "Gvergara"
-	const [agenda, setAgenda] = useState("")
-
-	function createAgenda() {
-		fetch(`${apiUrl}/agendas/${userAgenda}`, { method: "POST" })
-			.then(response => {
-				console.log("se creo la agenda");
-				return response.json()
-			})
-			.then(data => console.log(data))
-	}
+	const [agenda, setAgenda] = useState([])
 
 	function getAgenda() {
 		fetch(`${apiUrl}/agendas/${userAgenda}/contacts`)
-			.then(response => {
-				if (!response.ok) {
-					if (response.status == 404) {
-						createAgenda()
-					}
-					console.log("No se pudo obtener la agenda")
-				}
-				return response.json()
+			.then(response => response.json())
+			.then((data) => {
+				setAgenda(data)
 			})
+			.catch((error) => console.error("Error creando la agenda", error))
 	}
 
 	useEffect(() => {
 		getAgenda()
-	}, [])
+	}, []);
+
 	return (
 		<div className="text-center mt-5">
 			<Link to="add-contact">
@@ -40,12 +28,18 @@ export const Home = () => {
 					Add New Contact
 				</button>
 			</Link>
-			<form>
-				<input
-				type="Text"
-				>
-				</input>
-			</form>		
+				<div className="mt-4">
+					<h2>contactos</h2>
+					{agenda && agenda.length > 0 ? (
+						<ul>
+							{agenda.map ((contact, index) => (
+								<li key={index}>{contact.full_name}</li>
+							))}
+						</ul>
+					) : (
+						<p>No hay contactos</p>
+					)}
+				</div>	
 		</div>
 	);
 }; 
