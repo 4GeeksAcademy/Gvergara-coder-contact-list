@@ -43,3 +43,27 @@ body{
     border-radius: 5px;
     background-color: rgb(74, 167, 110);
 }
+
+.edit-button, .delete-button{
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.contact-list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+}

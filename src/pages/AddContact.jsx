@@ -1,42 +1,47 @@
 import React, { useState } from "react";
-import { json, useNavigate } from "react-router-dom";
-import useGlobalReducer from "../hooks/useGlobalReducer"
+import { useNavigate } from "react-router-dom";
 
 const Addcontact = () => {
-    const apiUrl = "https://playground.4geeks.com/contact"
-    const userAgenda = "Gvergara"
+    const apiUrl = "https://playground.4geeks.com/contact";
+    const userAgenda = "Gvergara";
     const [contact, setContact] = useState({
         name: "",
         email: "",
         address: "",
         phone: ""
-    })
+    });
     const navigate = useNavigate();
 
     const agendaCambio = (e) => {
         setContact({
             ...contact,
             [e.target.name]: e.target.value
-        })
-    }
+        });
+    };
+
     const enterAgenda = (e) => {
-        e.preventDefault()
-        
-        fetch(`${apiUrl}/agendas/${userAgenda}/contacts`,{
+        e.preventDefault();
+
+        fetch(`${apiUrl}/agendas/${userAgenda}/contacts`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
-              },
+            },
             body: JSON.stringify(contact)
         })
-        
         .then((response) => {
-            if(!response.ok){
-                throw new Error("Error guardando contacto")
+            if (!response.ok) {
+                throw new Error("Error guardando contacto");
             }
-            return response.json()
+            return response.json();
         })
-    }
+        .then(() => { 
+            navigate("/");
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+    };
 
     return (
         <div className="container mt-5">
@@ -46,8 +51,8 @@ const Addcontact = () => {
             <form onSubmit={enterAgenda}>
                 <div>
                     <label className="header-input">Full Name</label>
-                    <input 
-                        label = "fullname"
+                    <input
+                        label="fullname"
                         className="input"
                         type="text"
                         name="name"
@@ -57,7 +62,7 @@ const Addcontact = () => {
                     />
                 </div>
                 <label className="header-input">Email</label>
-                <input 
+                <input
                     className="input"
                     type="email"
                     name="email"
@@ -67,7 +72,7 @@ const Addcontact = () => {
                 />
 
                 <label className="header-input">Phone</label>
-                <input 
+                <input
                     className="input"
                     type="text"
                     name="phone"
@@ -77,7 +82,7 @@ const Addcontact = () => {
                 />
 
                 <label className="header-input">Address</label>
-                <input 
+                <input
                     className="input"
                     type="text"
                     name="address"
@@ -87,23 +92,19 @@ const Addcontact = () => {
                 />
 
                 <h3>
-                    <button 
-                    type="submit"
-                    className="save-button"
-                    onClick={() =>{
-                        enterAgenda, navigate("/")
-                    }}>
+                    <button
+                        type="submit"
+                        className="save-button"
+                    >
                         Save
                     </button>
                 </h3>
-                <a className="back-contacts"
-                    href="/">
+                <a className="back-contacts" href="/">
                     or get back to contacts
                 </a>
             </form>
-
         </div>
-    )
-}
+    );
+};
 
-export default Addcontact
+export default Addcontact;
