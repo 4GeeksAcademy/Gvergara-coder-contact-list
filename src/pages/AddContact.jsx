@@ -13,13 +13,13 @@ const Addcontact = () => {
     })
     const navigate = useNavigate();
 
-    const handleChange = (e) => {
+    const agendaCambio = (e) => {
         setContact({
             ...contact,
             [e.target.name]: e.target.value
         })
     }
-    const handleSumbit = (e) => {
+    const enterAgenda = (e) => {
         e.preventDefault()
         
         fetch(`${apiUrl}/agendas/${userAgenda}/contacts`,{
@@ -43,7 +43,7 @@ const Addcontact = () => {
             <h1 className="header">
                 Add a New Contact
             </h1>
-            <form onSubmit={handleSumbit}>
+            <form onSubmit={enterAgenda}>
                 <div>
                     <label className="header-input">Full Name</label>
                     <input 
@@ -52,7 +52,7 @@ const Addcontact = () => {
                         type="text"
                         name="name"
                         placeholder="Full Name"
-                        onChange={handleChange}
+                        onChange={agendaCambio}
                         value={contact.name}
                     />
                 </div>
@@ -62,7 +62,8 @@ const Addcontact = () => {
                     type="email"
                     name="email"
                     placeholder="Enter Email"
-                    onChange={handleChange}
+                    onChange={agendaCambio}
+                    value={contact.email}
                 />
 
                 <label className="header-input">Phone</label>
@@ -72,7 +73,7 @@ const Addcontact = () => {
                     name="phone"
                     placeholder="Enter Phone"
                     value={contact.phone}
-                    onChange={handleChange}
+                    onChange={agendaCambio}
                 />
 
                 <label className="header-input">Address</label>
@@ -81,7 +82,8 @@ const Addcontact = () => {
                     type="text"
                     name="address"
                     placeholder="Enter Address"
-                    onChange={handleChange}
+                    onChange={agendaCambio}
+                    value={contact.address}
                 />
 
                 <h3>
@@ -89,7 +91,7 @@ const Addcontact = () => {
                     type="submit"
                     className="save-button"
                     onClick={() =>{
-                        handleSumbit, navigate("/")
+                        enterAgenda, navigate("/")
                     }}>
                         Save
                     </button>
