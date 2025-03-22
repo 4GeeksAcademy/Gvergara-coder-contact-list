@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { json, useNavigate } from "react-router-dom";
+import useGlobalReducer from "../hooks/useGlobalReducer"
 
 const Addcontact = () => {
     const apiUrl = "https://playground.4geeks.com/contact"
     const userAgenda = "Gvergara"
     const [contact, setContact] = useState({
-        fullname: "",
+        name: "",
         email: "",
         address: "",
         phone: ""
@@ -20,9 +21,14 @@ const Addcontact = () => {
     }
     const handleSumbit = (e) => {
         e.preventDefault()
-        const newContact ={...contact, agenda_slug: userAgenda}
-        body: JSON.stringify(newContact)
-        fetch(`${apiUrl}/agendas/${userAgenda}/contacts`,{method: "POST"})
+        
+        fetch(`${apiUrl}/agendas/${userAgenda}/contacts`,{
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+              },
+            body: JSON.stringify(contact)
+        })
         
         .then((response) => {
             if(!response.ok){
@@ -44,9 +50,10 @@ const Addcontact = () => {
                         label = "fullname"
                         className="input"
                         type="text"
-                        name="Full Name"
+                        name="name"
                         placeholder="Full Name"
                         onChange={handleChange}
+                        value={contact.name}
                     />
                 </div>
                 <label className="header-input">Email</label>
@@ -80,7 +87,10 @@ const Addcontact = () => {
                 <h3>
                     <button 
                     type="submit"
-                    className="save-button">
+                    className="save-button"
+                    onClick={() =>{
+                        handleSumbit, navigate("/")
+                    }}>
                         Save
                     </button>
                 </h3>
