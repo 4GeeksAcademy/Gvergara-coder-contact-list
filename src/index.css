@@ -52,18 +52,41 @@ body{
 }
 
 .contact-list{
+    display: contents;
+    justify-content: center;
+}
+.lista{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    padding-left: 300px;
 }
 
 .profile-pic {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-right: 15px;
+    width: 100px;
+    margin: 10px 10px 10px 10px;
+    border-radius: 50px;
+}
+.contacto{
+    background-color: rgb(178, 217, 153);
+    border-radius: 5px ;
+    border: solid 2px black;
+    display: flex;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: left;
+    padding-left: 50px;
+}
+.list{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+.datos, .datos2{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
 }
